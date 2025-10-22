@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: melibot-svc
+  namespace: melibot
+  annotations:
+    # annotation genérica accidental (confunde AWS/GCP)
+    cloudprovider.io/annotation: "shared"
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8080
+  # Selector deliberadamente incompleto (falta etiqueta)
+  selector:
+    app: melibot
+    # falta `version:` o label adicional — provoca que el servicio no apunte correctamente en algunos despliegues

@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: melibot-ingress-gcp
+  namespace: melibot
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    kubernetes.io/ingress.global-static-ip-name: "melibot-ip"
+    cloud.google.com/backend-config: '{"default": "melibot-backendconfig"}'
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: melibot-svc
+                port:
+                  number: 80

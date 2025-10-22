@@ -1,0 +1,9 @@
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: melibot-backendconfig
+  namespace: melibot
+spec:
+  connectionDraining:
+    drainingTimeoutSec: 300
+  # healthCheck omitted intencionalmente

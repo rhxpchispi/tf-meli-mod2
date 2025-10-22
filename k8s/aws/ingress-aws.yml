@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: melibot-ingress
+  namespace: melibot
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internal
+    # anotación errónea de GCP colocada aqui para que los alumnos la detecten
+    kubernetes.io/ingress.global-static-ip-name: "melibot-ip"
+spec:
+  rules:
+    - http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: melibot-svc
+              port:
+                number: 80

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: melibot
+  namespace: melibot
+  labels:
+    app: melibot
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: melibot
+  template:
+    metadata:
+      labels:
+        app: melibot
+    spec:
+      containers:
+      - name: melibot
+      image: myregistry/melibot:vulnerable-2020
+      imagePullPolicy: Always
+      ports:
+        - containerPort: 8080
+      # Recursos mal definidos: sólo requests (bajos) y sin limits
+      resources:
+        requests:
+          cpu: "100m"
+          memory: "128Mi"
+      # Secrets y credenciales colocadas en env plaintext
+      env:
+      - name: DB_HOST
+        value: "db.internal.svc.cluster.local"
+      - name: DB_USER
+        value: "admin"
+      - name: DB_PASS
+        value: "SuperSecretPlainText"
+      # Contenedor duplicado innecesario (config diferente) para generar confusión
+      - name: melibot-sidecar
+      image: myregistry/melibot-sidecar:latest
+      ports:
+        - containerPort: 9090
+      env:
+        - name: METRICS_ENABLED
+          value: "true"

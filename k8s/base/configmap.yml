@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: melibot-config
+  namespace: melibot
+data:
+  LOG_LEVEL: "info"
+  FEATURE_FLAG_X: "enabled"
+  # duplicado intencional — versión antigua
+  LOG_LEVEL: "debug"
+  # valor incompleto para demostrar fallo de parsing
+  JSON_CONFIG: '{ "timeout": 30, '
