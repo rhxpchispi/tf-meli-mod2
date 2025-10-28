@@ -1,6 +1,8 @@
-# Ejercicio de Kubernetes Multicloud (AWS + GCP)
+# Ejercicio de Kubernetes Multicloud: AWS + GCP
 
 ## Objetivo: un repositorio con manifiestos Kubernetes que contenga errores intencionales para que los alumnos detecten, analicen y propongan correcciones. El escenario simula un despliegue multi-cloud (AWS y GCP) donde escala y aparecen problemas reales.
+
+> **IMPORTANTE:** estos archivos están diseñados para clase: contienen configuraciones inseguras y malas prácticas **intencionales**. Todas las configuraciones son *válidas sintácticamente*. No desplegar en producción.
 
 ---
 
@@ -31,8 +33,6 @@ tf-meli-mod2/
 ---
 
 # Contenido de archivos (manifiestos)
-
-> **IMPORTANTE:** estos archivos están diseñados para clase: contienen configuraciones inseguras y malas prácticas **intencionales**. No desplegar en producción.
 
 ---
 
